@@ -36,7 +36,7 @@ module "databricks_lakehouse_federation" {
   create_foreign_catalog = true
   
   connection = {
-    name            = "microsoft-wwi-demo-${var.env}"
+    name            = "sql-server-connection"
     connection_type = "SQLSERVER"
     options = {
       name     = "mssql-example"
