@@ -43,6 +43,8 @@ module "databricks_lakehouse_federation" {
       host     = data.azurerm_mssql_server.example.fqdn
       user     = "mssql-admin-username"
       password = "mssql-example-password"
+      application_intent  = "ReadOnly"  # Optional. Or other intent like ReadWrite
+      trustServerCertificate = "true"   # Optional. Or "false" depending on your requirements
     }
   }
   
