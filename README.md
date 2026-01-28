@@ -36,7 +36,7 @@ module "databricks_lakehouse_federation" {
   create_foreign_catalog = true
   
   connection = {
-    name            = "sql-server-connection"
+    name            = "microsoft-wwi-demo-${var.env}"
     connection_type = "SQLSERVER"
     options = {
       name     = "mssql-example"
@@ -66,14 +66,14 @@ module "databricks_lakehouse_federation" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.0.0 |
-| <a name="requirement_databricks"></a> [databricks](#requirement\_databricks) | >=1.25.1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
+| <a name="requirement_databricks"></a> [databricks](#requirement\_databricks) | ~> 1.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_databricks"></a> [databricks](#provider\_databricks) | >=1.25.1 |
+| <a name="provider_databricks"></a> [databricks](#provider\_databricks) | ~> 1.0 |
 
 ## Modules
 
@@ -91,8 +91,8 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_catalog"></a> [catalog](#input\_catalog) | Configuration options for Foreign Catalog creation using Lakehouse Federation connection | <pre>object({<br>    name          = optional(string)     # Name of Foreign Catalog<br>    force_destroy = optional(bool, true) # Delete catalog regardless of its contents.<br>    options       = map(string)          # For Foreign Catalogs: the name of the entity from an external data source that maps to a catalog. For example, the database name in a PostgreSQL server.<br>    grants = optional(set(object({       # List of objects with permission assigned to Foreign Catalog<br>      group_name       = string<br>      permission_level = set(string)<br>    })))<br>    comment    = optional(string, "Terraform-managed catalog") # User-supplied free-form text.<br>    properties = optional(map(string))                         # Extensible Catalog properties.<br>  })</pre> | `null` | no |
-| <a name="input_connection"></a> [connection](#input\_connection) | Configuration options for Databricks Connection | <pre>object({<br>    name            = string                                           # Name of the Connection.<br>    connection_type = string                                           # Connection type. MYSQL, POSTGRESQL, SNOWFLAKE, REDSHIFT, SQLDW, SQLSERVER or DATABRICKS are supported.<br>    comment         = optional(string, "Terraform-managed connection") # Free-form text.<br>    options         = map(string)                                      # The key value of options required by the connection, e.g. host, port, user and password.<br>  })</pre> | `null` | no |
+| <a name="input_catalog"></a> [catalog](#input\_catalog) | Configuration options for Foreign Catalog creation using Lakehouse Federation connection | <pre>object({<br/>    name          = optional(string)     # Name of Foreign Catalog<br/>    force_destroy = optional(bool, true) # Delete catalog regardless of its contents.<br/>    options       = map(string)          # For Foreign Catalogs: the name of the entity from an external data source that maps to a catalog. For example, the database name in a PostgreSQL server.<br/>    grants = optional(set(object({       # List of objects with permission assigned to Foreign Catalog<br/>      group_name       = string<br/>      permission_level = set(string)<br/>    })))<br/>    comment    = optional(string, "Terraform-managed catalog") # User-supplied free-form text.<br/>    properties = optional(map(string))                         # Extensible Catalog properties.<br/>  })</pre> | `null` | no |
+| <a name="input_connection"></a> [connection](#input\_connection) | Configuration options for Databricks Connection | <pre>object({<br/>    name            = string                                           # Name of the Connection.<br/>    connection_type = string                                           # Connection type. MYSQL, POSTGRESQL, SNOWFLAKE, REDSHIFT, SQLDW, SQLSERVER or DATABRICKS are supported.<br/>    comment         = optional(string, "Terraform-managed connection") # Free-form text.<br/>    options         = map(string)                                      # The key value of options required by the connection, e.g. host, port, user and password.<br/>  })</pre> | `null` | no |
 | <a name="input_create_foreign_catalog"></a> [create\_foreign\_catalog](#input\_create\_foreign\_catalog) | Boolean flag that determines whether Foreign Catalog using Connection is created | `bool` | `true` | no |
 | <a name="input_metastore_id"></a> [metastore\_id](#input\_metastore\_id) | Databricks metastore id | `string` | n/a | yes |
 
